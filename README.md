@@ -6,6 +6,14 @@ There are three environment variables that can be set:
 * `INDEX`: Account index where you want to start to generate the wallets.
 * `NUM`: Number of wallets to generate
 
+Install dependencies:
+
+```js
+npm install
+```
+
+Example:
+
 ```js
 MNEMONIC="advice save proof shift social luggage test sauce vintage fine angry jump" node index.js
 ```
