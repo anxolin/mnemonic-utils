@@ -7,6 +7,8 @@ var numAddresses = process.env.NUM ? parseInt(process.env.NUM) : 5
 
 if (!mnemonic) {
   throw Error('No mnemonic was provided. Use "MNEMONIC" env var.')
+} else if (!bip39.validateMnemonic(mnemonic)) {
+  console.warn('The provided mnemonic is not a valid one')
 }
 
 const seed = bip39.mnemonicToSeed(mnemonic)
@@ -16,7 +18,7 @@ const wallets = []
 for (let i = addressIndex; i < addressIndex + numAddresses; i++){
   const wallet = hdwallet.derivePath(WALLET_HD_PATH + i).getWallet()
   const address = '0x' + wallet.getAddress().toString('hex')
-  
+
   wallets.push({
     address,
     wallet
@@ -25,7 +27,7 @@ for (let i = addressIndex; i < addressIndex + numAddresses; i++){
 
 console.log(`
       ****************************************
-                   MNEMONIC UTILS 
+                   MNEMONIC UTILS
       ****************************************
 
 Params:
